@@ -1,0 +1,10 @@
+{
+    "antlr4.generation": {
+      "mode": "external",
+      "language": "CSharp",
+      "outputDir": "Generated",
+      "listeners": true,
+      "visitors": true
+    }
+  }
+  
