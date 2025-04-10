@@ -2,6 +2,7 @@
 using System.Globalization;
 using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
+using pjpproject;
 
 namespace MyNamespace
 {
@@ -18,10 +19,22 @@ namespace MyNamespace
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             PLCParser parser = new PLCParser(tokens);
 
-            //parser.AddErrorListener(new VerboseListener());
+            var errorListener = new VerboseListener();
+            parser.RemoveErrorListeners();  // Smazání defaultních chybových posluchačů
+            parser.AddErrorListener(errorListener);  // Přidání vlastního listeneru
 
             IParseTree tree = parser.program();
-            Console.WriteLine(tree.ToStringTree(parser));
+            if (parser.NumberOfSyntaxErrors == 0)
+            {
+                Console.WriteLine("Bez erroru");
+                Console.WriteLine(tree.ToStringTree(parser));
+                if (Errors.NumberOfErrors != 0)
+                {
+                    Errors.PrintAndClearErrors();
+                }
+                Console.WriteLine("Bez erroru");
+            }
+            
         }
     }
 }
