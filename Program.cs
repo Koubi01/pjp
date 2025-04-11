@@ -23,18 +23,19 @@ namespace MyNamespace
             parser.RemoveErrorListeners();  // Smazání defaultních chybových posluchačů
             parser.AddErrorListener(errorListener);  // Přidání vlastního listeneru
 
-            IParseTree tree = parser.program();
-            if (parser.NumberOfSyntaxErrors == 0)
+            var tree = parser.program();
+            var typeChecker = new TypeCheckerVisitor();
+            typeChecker.Visit(tree);
+
+            if (Errors.NumberOfErrors > 0)
             {
-                Console.WriteLine("Bez erroru");
-                Console.WriteLine(tree.ToStringTree(parser));
-                if (Errors.NumberOfErrors != 0)
-                {
-                    Errors.PrintAndClearErrors();
-                }
-                Console.WriteLine("Bez erroru");
+                Console.WriteLine("Type checking failed:");
+                Errors.PrintAndClearErrors();
+                return;
             }
-            
+
+            Console.WriteLine("Type checking passed.");
+                        
         }
     }
 }
