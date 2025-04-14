@@ -42,33 +42,34 @@ namespace pjpproject
         }
 
         public override PType VisitLiteralExpr(PLCParser.LiteralExprContext context)
-        {   
-            if (context.GetTokens(PLCParser.INT) != null) return PType.Int;
-            if (context.GetTokens(PLCParser.FLOAT) != null) return PType.Float;
-            if (context.GetTokens(PLCParser.STRING) != null) return PType.String;
-            if (context.GetText() == "true" || context.GetText() == "false") return PType.Bool;
+        {
+            var lit = context.literal();
+            //Console.WriteLine($"[DEBUG] VisitLiteralExpr: {lit.GetText()}");
+
+            if (lit.INT() != null) return PType.Int;
+            if (lit.FLOAT() != null) return PType.Float;
+            if (lit.STRING() != null) return PType.String;
+            if (lit.GetText() == "true" || lit.GetText() == "false") return PType.Bool;
+
             return PType.Error;
         }
-
         public override PType VisitAssignExpr(PLCParser.AssignExprContext context)
         {
             var left = context.expression(0);
-            var right = context.expression(1);
+            var rightType = Visit(context.expression(1));
 
-            if (left is not PLCParser.IdExprContext idExpr)
+            if (left is not PLCParser.IdExprContext)
             {
                 Errors.ReportError(left.Start, "Left side of assignment must be a variable.");
                 return PType.Error;
             }
 
-            string varName = idExpr.ID().GetText();
-            if (!_symbolTable.TryGetValue(varName, out var varType))
+            var leftVarName = left.GetText();
+            if (!_symbolTable.TryGetValue(leftVarName, out var varType))
             {
-                Errors.ReportError(idExpr.ID().Symbol, $"Variable '{varName}' is not declared.");
+                Errors.ReportError(context.Start, $"Variable '{leftVarName}' is not declared.");
                 return PType.Error;
             }
-
-            var rightType = Visit(right);
             if (!IsAssignable(varType, rightType))
             {
                 Errors.ReportError(context.Start, $"Cannot assign {rightType} to variable of type {varType}.");
@@ -76,6 +77,10 @@ namespace pjpproject
             }
 
             return varType;
+        }
+        public override PType VisitParenExpr(PLCParser.ParenExprContext context)
+        {
+            return Visit(context.expression());
         }
 
         public override PType VisitAddExpr(PLCParser.AddExprContext context)
@@ -103,9 +108,9 @@ namespace pjpproject
             var right = Visit(context.expression(1));
             var op = context.GetChild(1).GetText();
 
-            if (op == "%" && (left == PType.Int && right == PType.Int))
+            if (op == "%" && left == PType.Int && right == PType.Int)
                 return PType.Int;
-            if ((left == PType.Int || left == PType.Float) && (right == PType.Int || right == PType.Float))
+            if ((left == PType.Int || left == PType.Float) && (right == PType.Int || right == PType.Float) && op != "%")
                 return PromoteType(left, right);
 
             Errors.ReportError(context.Start, $"Invalid operands for '{op}': {left}, {right}");
@@ -127,8 +132,18 @@ namespace pjpproject
         {
             var left = Visit(context.expression(0));
             var right = Visit(context.expression(1));
+
+            //Console.WriteLine($"[DEBUG] VisitEqExpr: left={left}, right={right}");
+
+            if (left == PType.Error || right == PType.Error)
+            {
+                return PType.Error;
+            }              
+
             if (left == right || AreBothNumeric(left, right))
+            {
                 return PType.Bool;
+            }
 
             Errors.ReportError(context.Start, $"Cannot compare {left} and {right}.");
             return PType.Error;
@@ -146,9 +161,16 @@ namespace pjpproject
 
         public override PType VisitNotExpr(PLCParser.NotExprContext context)
         {
+            //Console.WriteLine($"[DEBUG] VisitNotExpr subtree: {context.GetText()}");
             var operand = Visit(context.expression());
+            //Console.WriteLine($"[DEBUG] VisitNotExpr operand type: {operand}");
+
             if (operand != PType.Bool)
+            {
                 Errors.ReportError(context.Start, "Operator '!' requires a boolean operand.");
+                return PType.Error;
+            }
+
             return PType.Bool;
         }
 
@@ -222,8 +244,10 @@ namespace pjpproject
             };
         }
 
-        private static bool AreBothNumeric(PType a, PType b) =>
-            (a == PType.Int || a == PType.Float) && (b == PType.Int || b == PType.Float);
+        private static bool AreBothNumeric(PType a, PType b)
+        {
+            return (a == PType.Int || a == PType.Float) && (b == PType.Int || b == PType.Float);
+        }
 
         private static PType PromoteType(PType a, PType b) =>
             (a == PType.Float || b == PType.Float) ? PType.Float : PType.Int;

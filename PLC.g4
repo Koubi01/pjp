@@ -24,18 +24,18 @@ whileStmt: 'while' '(' expression ')' statement;
 block: '{' statement* '}';
 
 expression
-    : expression '=' expression               #assignExpr
-    | expression '||' expression              #orExpr
+    : expression '||' expression              #orExpr
     | expression '&&' expression              #andExpr
     | expression ('==' | '!=') expression     #eqExpr
     | expression ('<' | '>') expression       #relExpr
     | expression ('+' | '-' | '.') expression #addExpr
-    | expression ('*' | '/' | '%') expression #mulExpr
-    | '!' expression                          #notExpr
+    | expression ('*' | '/' | '%') expression #mulExpr    
     | '-' expression                          #unaryMinusExpr
-    | '(' expression ')'                      #parenExpr
-    | literal                                 #literalExpr
+    | '!' expression                          #notExpr    
     | ID                                      #idExpr
+    | literal                                 #literalExpr
+    | <assoc=right> expression '=' expression #assignExpr 
+    | '(' expression ')'                      #parenExpr
     ;
 
 literal
@@ -47,8 +47,8 @@ literal
     ;
 
 ID: [a-zA-Z][a-zA-Z0-9]*;
-INT: [0-9]+;
 FLOAT: [0-9]+ '.' [0-9]+;
+INT: [0-9]+;
 STRING: '"' .*? '"';
-WS: [ \t\r\n]+ -> skip;
 COMMENT: '//' ~[\r\n]* -> skip;
+WS: [ \t\r\n]+ -> skip;

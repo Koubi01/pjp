@@ -24,8 +24,10 @@ namespace MyNamespace
             parser.AddErrorListener(errorListener);  // Přidání vlastního listeneru
 
             var tree = parser.program();
+            //Console.WriteLine(tree.ToStringTree());
             var typeChecker = new TypeCheckerVisitor();
             typeChecker.Visit(tree);
+
 
             if (Errors.NumberOfErrors > 0)
             {
