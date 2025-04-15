@@ -37,6 +37,10 @@ namespace MyNamespace
             }
 
             Console.WriteLine("Type checking passed.");
+
+            var codeGen = new CodeGenVisitor();
+            codeGen.Visit(tree);
+            File.WriteAllLines("output.txt", codeGen.GetInstructions());
                         
         }
     }
