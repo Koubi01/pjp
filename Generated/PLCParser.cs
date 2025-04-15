@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from d:/Progro/pjpproject/PLC.g4 by ANTLR 4.13.1
+// Generated from c:/Users/Hupin/OneDrive/Plocha/kubaSkola/pjp/PLC.g4 by ANTLR 4.13.1
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -40,7 +40,7 @@ public partial class PLCParser : Parser {
 		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
 		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24, 
 		T__24=25, T__25=26, T__26=27, T__27=28, T__28=29, T__29=30, T__30=31, 
-		ID=32, FLOAT=33, INT=34, STRING=35, COMMENT=36, WS=37;
+		T__31=32, ID=33, FLOAT=34, INT=35, STRING=36, COMMENT=37, WS=38;
 	public const int
 		RULE_program = 0, RULE_statement = 1, RULE_variableDecl = 2, RULE_type = 3, 
 		RULE_readStmt = 4, RULE_writeStmt = 5, RULE_ifStmt = 6, RULE_whileStmt = 7, 
@@ -52,14 +52,14 @@ public partial class PLCParser : Parser {
 
 	private static readonly string[] _LiteralNames = {
 		null, "';'", "','", "'int'", "'float'", "'bool'", "'string'", "'read'", 
-		"'write'", "'if'", "'('", "')'", "'else'", "'while'", "'{'", "'}'", "'||'", 
-		"'&&'", "'=='", "'!='", "'<'", "'>'", "'+'", "'-'", "'.'", "'*'", "'/'", 
-		"'%'", "'!'", "'='", "'true'", "'false'"
+		"'write'", "'if'", "'('", "')'", "'else'", "'while'", "'{'", "'}'", "'!'", 
+		"'-'", "'*'", "'/'", "'%'", "'+'", "'.'", "'<'", "'>'", "'=='", "'!='", 
+		"'&&'", "'||'", "'<<'", "'='", "'true'", "'false'"
 	};
 	private static readonly string[] _SymbolicNames = {
 		null, null, null, null, null, null, null, null, null, null, null, null, 
 		null, null, null, null, null, null, null, null, null, null, null, null, 
-		null, null, null, null, null, null, null, null, "ID", "FLOAT", "INT", 
+		null, null, null, null, null, null, null, null, null, "ID", "FLOAT", "INT", 
 		"STRING", "COMMENT", "WS"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
@@ -136,7 +136,7 @@ public partial class PLCParser : Parser {
 			State = 25;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 67922585594L) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 135291693050L) != 0)) {
 				{
 				{
 				State = 22;
@@ -226,10 +226,10 @@ public partial class PLCParser : Parser {
 				}
 				break;
 			case T__9:
-			case T__22:
-			case T__27:
-			case T__29:
+			case T__15:
+			case T__16:
 			case T__30:
+			case T__31:
 			case ID:
 			case FLOAT:
 			case INT:
@@ -749,7 +749,7 @@ public partial class PLCParser : Parser {
 			State = 96;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 67922585594L) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 135291693050L) != 0)) {
 				{
 				{
 				State = 93;
@@ -785,6 +785,53 @@ public partial class PLCParser : Parser {
 		public ExpressionContext() { }
 		public virtual void CopyFrom(ExpressionContext context) {
 			base.CopyFrom(context);
+		}
+	}
+	public partial class OrExprContext : ExpressionContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext[] expression() {
+			return GetRuleContexts<ExpressionContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression(int i) {
+			return GetRuleContext<ExpressionContext>(i);
+		}
+		public OrExprContext(ExpressionContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IPLCListener typedListener = listener as IPLCListener;
+			if (typedListener != null) typedListener.EnterOrExpr(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IPLCListener typedListener = listener as IPLCListener;
+			if (typedListener != null) typedListener.ExitOrExpr(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IPLCVisitor<TResult> typedVisitor = visitor as IPLCVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitOrExpr(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class ParenExprContext : ExpressionContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression() {
+			return GetRuleContext<ExpressionContext>(0);
+		}
+		public ParenExprContext(ExpressionContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IPLCListener typedListener = listener as IPLCListener;
+			if (typedListener != null) typedListener.EnterParenExpr(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IPLCListener typedListener = listener as IPLCListener;
+			if (typedListener != null) typedListener.ExitParenExpr(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IPLCVisitor<TResult> typedVisitor = visitor as IPLCVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitParenExpr(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class EqExprContext : ExpressionContext {
@@ -928,31 +975,6 @@ public partial class PLCParser : Parser {
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class OrExprContext : ExpressionContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext[] expression() {
-			return GetRuleContexts<ExpressionContext>();
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression(int i) {
-			return GetRuleContext<ExpressionContext>(i);
-		}
-		public OrExprContext(ExpressionContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override void EnterRule(IParseTreeListener listener) {
-			IPLCListener typedListener = listener as IPLCListener;
-			if (typedListener != null) typedListener.EnterOrExpr(this);
-		}
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override void ExitRule(IParseTreeListener listener) {
-			IPLCListener typedListener = listener as IPLCListener;
-			if (typedListener != null) typedListener.ExitOrExpr(this);
-		}
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPLCVisitor<TResult> typedVisitor = visitor as IPLCVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitOrExpr(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
 	public partial class RelExprContext : ExpressionContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext[] expression() {
 			return GetRuleContexts<ExpressionContext>();
@@ -978,6 +1000,31 @@ public partial class PLCParser : Parser {
 			else return visitor.VisitChildren(this);
 		}
 	}
+	public partial class NewOPContext : ExpressionContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext[] expression() {
+			return GetRuleContexts<ExpressionContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression(int i) {
+			return GetRuleContext<ExpressionContext>(i);
+		}
+		public NewOPContext(ExpressionContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IPLCListener typedListener = listener as IPLCListener;
+			if (typedListener != null) typedListener.EnterNewOP(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IPLCListener typedListener = listener as IPLCListener;
+			if (typedListener != null) typedListener.ExitNewOP(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IPLCVisitor<TResult> typedVisitor = visitor as IPLCVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitNewOP(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
 	public partial class AssignExprContext : ExpressionContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext[] expression() {
 			return GetRuleContexts<ExpressionContext>();
@@ -1000,28 +1047,6 @@ public partial class PLCParser : Parser {
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IPLCVisitor<TResult> typedVisitor = visitor as IPLCVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitAssignExpr(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
-	public partial class ParenExprContext : ExpressionContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ExpressionContext expression() {
-			return GetRuleContext<ExpressionContext>(0);
-		}
-		public ParenExprContext(ExpressionContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override void EnterRule(IParseTreeListener listener) {
-			IPLCListener typedListener = listener as IPLCListener;
-			if (typedListener != null) typedListener.EnterParenExpr(this);
-		}
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override void ExitRule(IParseTreeListener listener) {
-			IPLCListener typedListener = listener as IPLCListener;
-			if (typedListener != null) typedListener.ExitParenExpr(this);
-		}
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPLCVisitor<TResult> typedVisitor = visitor as IPLCVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitParenExpr(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
@@ -1091,27 +1116,27 @@ public partial class PLCParser : Parser {
 			State = 112;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
-			case T__22:
-				{
-				_localctx = new UnaryMinusExprContext(_localctx);
-				Context = _localctx;
-				_prevctx = _localctx;
-
-				State = 102;
-				Match(T__22);
-				State = 103;
-				expression(6);
-				}
-				break;
-			case T__27:
+			case T__15:
 				{
 				_localctx = new NotExprContext(_localctx);
 				Context = _localctx;
 				_prevctx = _localctx;
+
+				State = 102;
+				Match(T__15);
+				State = 103;
+				expression(13);
+				}
+				break;
+			case T__16:
+				{
+				_localctx = new UnaryMinusExprContext(_localctx);
+				Context = _localctx;
+				_prevctx = _localctx;
 				State = 104;
-				Match(T__27);
+				Match(T__16);
 				State = 105;
-				expression(5);
+				expression(12);
 				}
 				break;
 			case ID:
@@ -1123,8 +1148,8 @@ public partial class PLCParser : Parser {
 				Match(ID);
 				}
 				break;
-			case T__29:
 			case T__30:
+			case T__31:
 			case FLOAT:
 			case INT:
 			case STRING:
@@ -1153,7 +1178,7 @@ public partial class PLCParser : Parser {
 				throw new NoViableAltException(this);
 			}
 			Context.Stop = TokenStream.LT(-1);
-			State = 137;
+			State = 140;
 			ErrorHandler.Sync(this);
 			_alt = Interpreter.AdaptivePredict(TokenStream,9,Context);
 			while ( _alt!=2 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER ) {
@@ -1162,42 +1187,56 @@ public partial class PLCParser : Parser {
 						TriggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					State = 135;
+					State = 138;
 					ErrorHandler.Sync(this);
 					switch ( Interpreter.AdaptivePredict(TokenStream,8,Context) ) {
 					case 1:
 						{
-						_localctx = new OrExprContext(new ExpressionContext(_parentctx, _parentState));
+						_localctx = new MulExprContext(new ExpressionContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
 						State = 114;
-						if (!(Precpred(Context, 12))) throw new FailedPredicateException(this, "Precpred(Context, 12)");
+						if (!(Precpred(Context, 11))) throw new FailedPredicateException(this, "Precpred(Context, 11)");
 						State = 115;
-						Match(T__15);
+						_la = TokenStream.LA(1);
+						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 1835008L) != 0)) ) {
+						ErrorHandler.RecoverInline(this);
+						}
+						else {
+							ErrorHandler.ReportMatch(this);
+						    Consume();
+						}
 						State = 116;
-						expression(13);
+						expression(12);
 						}
 						break;
 					case 2:
 						{
-						_localctx = new AndExprContext(new ExpressionContext(_parentctx, _parentState));
+						_localctx = new AddExprContext(new ExpressionContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
 						State = 117;
-						if (!(Precpred(Context, 11))) throw new FailedPredicateException(this, "Precpred(Context, 11)");
+						if (!(Precpred(Context, 10))) throw new FailedPredicateException(this, "Precpred(Context, 10)");
 						State = 118;
-						Match(T__16);
+						_la = TokenStream.LA(1);
+						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 6422528L) != 0)) ) {
+						ErrorHandler.RecoverInline(this);
+						}
+						else {
+							ErrorHandler.ReportMatch(this);
+						    Consume();
+						}
 						State = 119;
-						expression(12);
+						expression(11);
 						}
 						break;
 					case 3:
 						{
-						_localctx = new EqExprContext(new ExpressionContext(_parentctx, _parentState));
+						_localctx = new RelExprContext(new ExpressionContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
 						State = 120;
-						if (!(Precpred(Context, 10))) throw new FailedPredicateException(this, "Precpred(Context, 10)");
+						if (!(Precpred(Context, 9))) throw new FailedPredicateException(this, "Precpred(Context, 9)");
 						State = 121;
 						_la = TokenStream.LA(1);
-						if ( !(_la==T__17 || _la==T__18) ) {
+						if ( !(_la==T__22 || _la==T__23) ) {
 						ErrorHandler.RecoverInline(this);
 						}
 						else {
@@ -1205,18 +1244,18 @@ public partial class PLCParser : Parser {
 						    Consume();
 						}
 						State = 122;
-						expression(11);
+						expression(10);
 						}
 						break;
 					case 4:
 						{
-						_localctx = new RelExprContext(new ExpressionContext(_parentctx, _parentState));
+						_localctx = new EqExprContext(new ExpressionContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
 						State = 123;
-						if (!(Precpred(Context, 9))) throw new FailedPredicateException(this, "Precpred(Context, 9)");
+						if (!(Precpred(Context, 8))) throw new FailedPredicateException(this, "Precpred(Context, 8)");
 						State = 124;
 						_la = TokenStream.LA(1);
-						if ( !(_la==T__19 || _la==T__20) ) {
+						if ( !(_la==T__24 || _la==T__25) ) {
 						ErrorHandler.RecoverInline(this);
 						}
 						else {
@@ -1224,63 +1263,61 @@ public partial class PLCParser : Parser {
 						    Consume();
 						}
 						State = 125;
-						expression(10);
+						expression(9);
 						}
 						break;
 					case 5:
 						{
-						_localctx = new AddExprContext(new ExpressionContext(_parentctx, _parentState));
+						_localctx = new AndExprContext(new ExpressionContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
 						State = 126;
-						if (!(Precpred(Context, 8))) throw new FailedPredicateException(this, "Precpred(Context, 8)");
+						if (!(Precpred(Context, 7))) throw new FailedPredicateException(this, "Precpred(Context, 7)");
 						State = 127;
-						_la = TokenStream.LA(1);
-						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 29360128L) != 0)) ) {
-						ErrorHandler.RecoverInline(this);
-						}
-						else {
-							ErrorHandler.ReportMatch(this);
-						    Consume();
-						}
+						Match(T__26);
 						State = 128;
-						expression(9);
+						expression(8);
 						}
 						break;
 					case 6:
 						{
-						_localctx = new MulExprContext(new ExpressionContext(_parentctx, _parentState));
+						_localctx = new OrExprContext(new ExpressionContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
 						State = 129;
-						if (!(Precpred(Context, 7))) throw new FailedPredicateException(this, "Precpred(Context, 7)");
+						if (!(Precpred(Context, 6))) throw new FailedPredicateException(this, "Precpred(Context, 6)");
 						State = 130;
-						_la = TokenStream.LA(1);
-						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 234881024L) != 0)) ) {
-						ErrorHandler.RecoverInline(this);
-						}
-						else {
-							ErrorHandler.ReportMatch(this);
-						    Consume();
-						}
+						Match(T__27);
 						State = 131;
-						expression(8);
+						expression(7);
 						}
 						break;
 					case 7:
 						{
-						_localctx = new AssignExprContext(new ExpressionContext(_parentctx, _parentState));
+						_localctx = new NewOPContext(new ExpressionContext(_parentctx, _parentState));
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
 						State = 132;
-						if (!(Precpred(Context, 2))) throw new FailedPredicateException(this, "Precpred(Context, 2)");
+						if (!(Precpred(Context, 3))) throw new FailedPredicateException(this, "Precpred(Context, 3)");
 						State = 133;
 						Match(T__28);
 						State = 134;
+						expression(4);
+						}
+						break;
+					case 8:
+						{
+						_localctx = new AssignExprContext(new ExpressionContext(_parentctx, _parentState));
+						PushNewRecursionContext(_localctx, _startState, RULE_expression);
+						State = 135;
+						if (!(Precpred(Context, 2))) throw new FailedPredicateException(this, "Precpred(Context, 2)");
+						State = 136;
+						Match(T__29);
+						State = 137;
 						expression(2);
 						}
 						break;
 					}
 					} 
 				}
-				State = 139;
+				State = 142;
 				ErrorHandler.Sync(this);
 				_alt = Interpreter.AdaptivePredict(TokenStream,9,Context);
 			}
@@ -1332,9 +1369,9 @@ public partial class PLCParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 140;
+			State = 143;
 			_la = TokenStream.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 63350767616L) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 126701535232L) != 0)) ) {
 			ErrorHandler.RecoverInline(this);
 			}
 			else {
@@ -1362,19 +1399,20 @@ public partial class PLCParser : Parser {
 	}
 	private bool expression_sempred(ExpressionContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 0: return Precpred(Context, 12);
-		case 1: return Precpred(Context, 11);
-		case 2: return Precpred(Context, 10);
-		case 3: return Precpred(Context, 9);
-		case 4: return Precpred(Context, 8);
-		case 5: return Precpred(Context, 7);
-		case 6: return Precpred(Context, 2);
+		case 0: return Precpred(Context, 11);
+		case 1: return Precpred(Context, 10);
+		case 2: return Precpred(Context, 9);
+		case 3: return Precpred(Context, 8);
+		case 4: return Precpred(Context, 7);
+		case 5: return Precpred(Context, 6);
+		case 6: return Precpred(Context, 3);
+		case 7: return Precpred(Context, 2);
 		}
 		return true;
 	}
 
 	private static int[] _serializedATN = {
-		4,1,37,143,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
+		4,1,38,146,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
 		7,7,2,8,7,8,2,9,7,9,2,10,7,10,1,0,5,0,24,8,0,10,0,12,0,27,9,0,1,0,1,0,
 		1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,41,8,1,1,2,1,2,1,2,1,2,5,2,
 		47,8,2,10,2,12,2,50,9,2,1,2,1,2,1,3,1,3,1,4,1,4,1,4,1,4,5,4,60,8,4,10,
@@ -1382,42 +1420,44 @@ public partial class PLCParser : Parser {
 		1,5,1,6,1,6,1,6,1,6,1,6,1,6,1,6,3,6,85,8,6,1,7,1,7,1,7,1,7,1,7,1,7,1,8,
 		1,8,5,8,95,8,8,10,8,12,8,98,9,8,1,8,1,8,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,
 		9,1,9,1,9,1,9,3,9,113,8,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,
-		1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,5,9,136,8,9,10,9,12,9,139,9,9,
-		1,10,1,10,1,10,0,1,18,11,0,2,4,6,8,10,12,14,16,18,20,0,6,1,0,3,6,1,0,18,
-		19,1,0,20,21,1,0,22,24,1,0,25,27,2,0,30,31,33,35,155,0,25,1,0,0,0,2,40,
-		1,0,0,0,4,42,1,0,0,0,6,53,1,0,0,0,8,55,1,0,0,0,10,66,1,0,0,0,12,77,1,0,
-		0,0,14,86,1,0,0,0,16,92,1,0,0,0,18,112,1,0,0,0,20,140,1,0,0,0,22,24,3,
-		2,1,0,23,22,1,0,0,0,24,27,1,0,0,0,25,23,1,0,0,0,25,26,1,0,0,0,26,28,1,
-		0,0,0,27,25,1,0,0,0,28,29,5,0,0,1,29,1,1,0,0,0,30,41,3,4,2,0,31,32,3,18,
-		9,0,32,33,5,1,0,0,33,41,1,0,0,0,34,41,3,8,4,0,35,41,3,10,5,0,36,41,3,12,
-		6,0,37,41,3,14,7,0,38,41,3,16,8,0,39,41,5,1,0,0,40,30,1,0,0,0,40,31,1,
-		0,0,0,40,34,1,0,0,0,40,35,1,0,0,0,40,36,1,0,0,0,40,37,1,0,0,0,40,38,1,
-		0,0,0,40,39,1,0,0,0,41,3,1,0,0,0,42,43,3,6,3,0,43,48,5,32,0,0,44,45,5,
-		2,0,0,45,47,5,32,0,0,46,44,1,0,0,0,47,50,1,0,0,0,48,46,1,0,0,0,48,49,1,
-		0,0,0,49,51,1,0,0,0,50,48,1,0,0,0,51,52,5,1,0,0,52,5,1,0,0,0,53,54,7,0,
-		0,0,54,7,1,0,0,0,55,56,5,7,0,0,56,61,5,32,0,0,57,58,5,2,0,0,58,60,5,32,
-		0,0,59,57,1,0,0,0,60,63,1,0,0,0,61,59,1,0,0,0,61,62,1,0,0,0,62,64,1,0,
-		0,0,63,61,1,0,0,0,64,65,5,1,0,0,65,9,1,0,0,0,66,67,5,8,0,0,67,72,3,18,
-		9,0,68,69,5,2,0,0,69,71,3,18,9,0,70,68,1,0,0,0,71,74,1,0,0,0,72,70,1,0,
-		0,0,72,73,1,0,0,0,73,75,1,0,0,0,74,72,1,0,0,0,75,76,5,1,0,0,76,11,1,0,
-		0,0,77,78,5,9,0,0,78,79,5,10,0,0,79,80,3,18,9,0,80,81,5,11,0,0,81,84,3,
-		2,1,0,82,83,5,12,0,0,83,85,3,2,1,0,84,82,1,0,0,0,84,85,1,0,0,0,85,13,1,
-		0,0,0,86,87,5,13,0,0,87,88,5,10,0,0,88,89,3,18,9,0,89,90,5,11,0,0,90,91,
-		3,2,1,0,91,15,1,0,0,0,92,96,5,14,0,0,93,95,3,2,1,0,94,93,1,0,0,0,95,98,
-		1,0,0,0,96,94,1,0,0,0,96,97,1,0,0,0,97,99,1,0,0,0,98,96,1,0,0,0,99,100,
-		5,15,0,0,100,17,1,0,0,0,101,102,6,9,-1,0,102,103,5,23,0,0,103,113,3,18,
-		9,6,104,105,5,28,0,0,105,113,3,18,9,5,106,113,5,32,0,0,107,113,3,20,10,
-		0,108,109,5,10,0,0,109,110,3,18,9,0,110,111,5,11,0,0,111,113,1,0,0,0,112,
-		101,1,0,0,0,112,104,1,0,0,0,112,106,1,0,0,0,112,107,1,0,0,0,112,108,1,
-		0,0,0,113,137,1,0,0,0,114,115,10,12,0,0,115,116,5,16,0,0,116,136,3,18,
-		9,13,117,118,10,11,0,0,118,119,5,17,0,0,119,136,3,18,9,12,120,121,10,10,
-		0,0,121,122,7,1,0,0,122,136,3,18,9,11,123,124,10,9,0,0,124,125,7,2,0,0,
-		125,136,3,18,9,10,126,127,10,8,0,0,127,128,7,3,0,0,128,136,3,18,9,9,129,
-		130,10,7,0,0,130,131,7,4,0,0,131,136,3,18,9,8,132,133,10,2,0,0,133,134,
-		5,29,0,0,134,136,3,18,9,2,135,114,1,0,0,0,135,117,1,0,0,0,135,120,1,0,
-		0,0,135,123,1,0,0,0,135,126,1,0,0,0,135,129,1,0,0,0,135,132,1,0,0,0,136,
-		139,1,0,0,0,137,135,1,0,0,0,137,138,1,0,0,0,138,19,1,0,0,0,139,137,1,0,
-		0,0,140,141,7,5,0,0,141,21,1,0,0,0,10,25,40,48,61,72,84,96,112,135,137
+		1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,5,9,139,8,9,10,9,12,
+		9,142,9,9,1,10,1,10,1,10,0,1,18,11,0,2,4,6,8,10,12,14,16,18,20,0,6,1,0,
+		3,6,1,0,18,20,2,0,17,17,21,22,1,0,23,24,1,0,25,26,2,0,31,32,34,36,159,
+		0,25,1,0,0,0,2,40,1,0,0,0,4,42,1,0,0,0,6,53,1,0,0,0,8,55,1,0,0,0,10,66,
+		1,0,0,0,12,77,1,0,0,0,14,86,1,0,0,0,16,92,1,0,0,0,18,112,1,0,0,0,20,143,
+		1,0,0,0,22,24,3,2,1,0,23,22,1,0,0,0,24,27,1,0,0,0,25,23,1,0,0,0,25,26,
+		1,0,0,0,26,28,1,0,0,0,27,25,1,0,0,0,28,29,5,0,0,1,29,1,1,0,0,0,30,41,3,
+		4,2,0,31,32,3,18,9,0,32,33,5,1,0,0,33,41,1,0,0,0,34,41,3,8,4,0,35,41,3,
+		10,5,0,36,41,3,12,6,0,37,41,3,14,7,0,38,41,3,16,8,0,39,41,5,1,0,0,40,30,
+		1,0,0,0,40,31,1,0,0,0,40,34,1,0,0,0,40,35,1,0,0,0,40,36,1,0,0,0,40,37,
+		1,0,0,0,40,38,1,0,0,0,40,39,1,0,0,0,41,3,1,0,0,0,42,43,3,6,3,0,43,48,5,
+		33,0,0,44,45,5,2,0,0,45,47,5,33,0,0,46,44,1,0,0,0,47,50,1,0,0,0,48,46,
+		1,0,0,0,48,49,1,0,0,0,49,51,1,0,0,0,50,48,1,0,0,0,51,52,5,1,0,0,52,5,1,
+		0,0,0,53,54,7,0,0,0,54,7,1,0,0,0,55,56,5,7,0,0,56,61,5,33,0,0,57,58,5,
+		2,0,0,58,60,5,33,0,0,59,57,1,0,0,0,60,63,1,0,0,0,61,59,1,0,0,0,61,62,1,
+		0,0,0,62,64,1,0,0,0,63,61,1,0,0,0,64,65,5,1,0,0,65,9,1,0,0,0,66,67,5,8,
+		0,0,67,72,3,18,9,0,68,69,5,2,0,0,69,71,3,18,9,0,70,68,1,0,0,0,71,74,1,
+		0,0,0,72,70,1,0,0,0,72,73,1,0,0,0,73,75,1,0,0,0,74,72,1,0,0,0,75,76,5,
+		1,0,0,76,11,1,0,0,0,77,78,5,9,0,0,78,79,5,10,0,0,79,80,3,18,9,0,80,81,
+		5,11,0,0,81,84,3,2,1,0,82,83,5,12,0,0,83,85,3,2,1,0,84,82,1,0,0,0,84,85,
+		1,0,0,0,85,13,1,0,0,0,86,87,5,13,0,0,87,88,5,10,0,0,88,89,3,18,9,0,89,
+		90,5,11,0,0,90,91,3,2,1,0,91,15,1,0,0,0,92,96,5,14,0,0,93,95,3,2,1,0,94,
+		93,1,0,0,0,95,98,1,0,0,0,96,94,1,0,0,0,96,97,1,0,0,0,97,99,1,0,0,0,98,
+		96,1,0,0,0,99,100,5,15,0,0,100,17,1,0,0,0,101,102,6,9,-1,0,102,103,5,16,
+		0,0,103,113,3,18,9,13,104,105,5,17,0,0,105,113,3,18,9,12,106,113,5,33,
+		0,0,107,113,3,20,10,0,108,109,5,10,0,0,109,110,3,18,9,0,110,111,5,11,0,
+		0,111,113,1,0,0,0,112,101,1,0,0,0,112,104,1,0,0,0,112,106,1,0,0,0,112,
+		107,1,0,0,0,112,108,1,0,0,0,113,140,1,0,0,0,114,115,10,11,0,0,115,116,
+		7,1,0,0,116,139,3,18,9,12,117,118,10,10,0,0,118,119,7,2,0,0,119,139,3,
+		18,9,11,120,121,10,9,0,0,121,122,7,3,0,0,122,139,3,18,9,10,123,124,10,
+		8,0,0,124,125,7,4,0,0,125,139,3,18,9,9,126,127,10,7,0,0,127,128,5,27,0,
+		0,128,139,3,18,9,8,129,130,10,6,0,0,130,131,5,28,0,0,131,139,3,18,9,7,
+		132,133,10,3,0,0,133,134,5,29,0,0,134,139,3,18,9,4,135,136,10,2,0,0,136,
+		137,5,30,0,0,137,139,3,18,9,2,138,114,1,0,0,0,138,117,1,0,0,0,138,120,
+		1,0,0,0,138,123,1,0,0,0,138,126,1,0,0,0,138,129,1,0,0,0,138,132,1,0,0,
+		0,138,135,1,0,0,0,139,142,1,0,0,0,140,138,1,0,0,0,140,141,1,0,0,0,141,
+		19,1,0,0,0,142,140,1,0,0,0,143,144,7,5,0,0,144,21,1,0,0,0,10,25,40,48,
+		61,72,84,96,112,138,140
 	};
 
 	public static readonly ATN _ATN =

@@ -83,6 +83,26 @@ namespace pjpproject
             return Visit(context.expression());
         }
 
+       public override PType VisitNewOP(PLCParser.NewOPContext context)
+        {
+            var left = Visit(context.expression(0));
+            var right = Visit(context.expression(1));
+
+            if (left != PType.String)
+            {
+                Errors.ReportError(context.expression(0).Start, $"Left operand of '<<' must be a string, got {left}.");
+                return PType.Error;
+            }
+
+            if (right == PType.String || right == PType.Int || right == PType.Float || right == PType.Bool)
+            {
+                return PType.String;
+            }
+
+            Errors.ReportError(context.expression(1).Start, $"Right operand of '<<' must be a printable type (int, float, bool, string), got {right}.");
+            return PType.Error;
+        }
+
         public override PType VisitAddExpr(PLCParser.AddExprContext context)
         {
             var left = Visit(context.expression(0));

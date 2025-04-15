@@ -24,18 +24,19 @@ whileStmt: 'while' '(' expression ')' statement;
 block: '{' statement* '}';
 
 expression
-    : <assoc=left> expression '||' expression              #orExpr
-    | <assoc=left> expression '&&' expression              #andExpr
-    | <assoc=left> expression ('==' | '!=') expression     #eqExpr
-    | <assoc=left> expression ('<' | '>') expression       #relExpr
-    | <assoc=left> expression ('+' | '-' | '.') expression #addExpr
+    : '!' expression                                       #notExpr    
+    | '-' expression                                       #unaryMinusExpr
     | <assoc=left> expression ('*' | '/' | '%') expression #mulExpr    
-    | '-' expression                          #unaryMinusExpr
-    | '!' expression                          #notExpr    
-    | ID                                      #idExpr
-    | literal                                 #literalExpr
-    | <assoc=right> expression '=' expression #assignExpr 
-    | '(' expression ')'                      #parenExpr
+    | <assoc=left> expression ('+' | '-' | '.') expression #addExpr
+    | <assoc=left> expression ('<' | '>') expression       #relExpr
+    | <assoc=left> expression ('==' | '!=') expression     #eqExpr
+    | <assoc=left> expression '&&' expression              #andExpr
+    | <assoc=left> expression '||' expression              #orExpr
+    | ID                                                   #idExpr
+    | literal                                              #literalExpr
+    | <assoc=left> expression '<<' expression              #newOP
+    | <assoc=right> expression '=' expression              #assignExpr 
+    | '(' expression ')'                                   #parenExpr
     ;
 
 literal

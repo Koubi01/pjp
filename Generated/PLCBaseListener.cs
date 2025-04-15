@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from d:/Progro/pjpproject/PLC.g4 by ANTLR 4.13.1
+// Generated from c:/Users/Hupin/OneDrive/Plocha/kubaSkola/pjp/PLC.g4 by ANTLR 4.13.1
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -144,6 +144,34 @@ public partial class PLCBaseListener : IPLCListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitBlock([NotNull] PLCParser.BlockContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>orExpr</c>
+	/// labeled alternative in <see cref="PLCParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterOrExpr([NotNull] PLCParser.OrExprContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>orExpr</c>
+	/// labeled alternative in <see cref="PLCParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitOrExpr([NotNull] PLCParser.OrExprContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>parenExpr</c>
+	/// labeled alternative in <see cref="PLCParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterParenExpr([NotNull] PLCParser.ParenExprContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>parenExpr</c>
+	/// labeled alternative in <see cref="PLCParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitParenExpr([NotNull] PLCParser.ParenExprContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>eqExpr</c>
 	/// labeled alternative in <see cref="PLCParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -228,20 +256,6 @@ public partial class PLCBaseListener : IPLCListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitMulExpr([NotNull] PLCParser.MulExprContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>orExpr</c>
-	/// labeled alternative in <see cref="PLCParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterOrExpr([NotNull] PLCParser.OrExprContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>orExpr</c>
-	/// labeled alternative in <see cref="PLCParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitOrExpr([NotNull] PLCParser.OrExprContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by the <c>relExpr</c>
 	/// labeled alternative in <see cref="PLCParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -256,6 +270,20 @@ public partial class PLCBaseListener : IPLCListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitRelExpr([NotNull] PLCParser.RelExprContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>newOP</c>
+	/// labeled alternative in <see cref="PLCParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterNewOP([NotNull] PLCParser.NewOPContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>newOP</c>
+	/// labeled alternative in <see cref="PLCParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitNewOP([NotNull] PLCParser.NewOPContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>assignExpr</c>
 	/// labeled alternative in <see cref="PLCParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -269,20 +297,6 @@ public partial class PLCBaseListener : IPLCListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitAssignExpr([NotNull] PLCParser.AssignExprContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by the <c>parenExpr</c>
-	/// labeled alternative in <see cref="PLCParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterParenExpr([NotNull] PLCParser.ParenExprContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>parenExpr</c>
-	/// labeled alternative in <see cref="PLCParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitParenExpr([NotNull] PLCParser.ParenExprContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>idExpr</c>
 	/// labeled alternative in <see cref="PLCParser.expression"/>.

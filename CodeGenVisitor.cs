@@ -42,7 +42,7 @@ public class CodeGenVisitor : PLCBaseVisitor<PType>
         foreach (var id in context.ID())
         {
             _symbolTable[id.GetText()] = type;
-            //_instructions.Add($"VisitVariableDecl {id.GetText()}");
+            _instructions.Add($"VisitVariableDecl {id.GetText()}");
             _instructions.Add($"push {GetTypeCode(type)} {GetDefaultValue(type)}");
             _instructions.Add($"save {id.GetText()}");
         }
@@ -66,25 +66,25 @@ public class CodeGenVisitor : PLCBaseVisitor<PType>
         var text = context.literal().GetText();
         if (context.literal().INT() != null)
         {
-           // _instructions.Add($"VisitLiteralExpr ");
+            _instructions.Add($"VisitLiteralExpr ");
             _instructions.Add($"push I {text}");
             return PType.Int;
         }
         if (context.literal().FLOAT() != null)
         {
-           // _instructions.Add($"VisitLiteralExpr ");
+            _instructions.Add($"VisitLiteralExpr ");
             _instructions.Add($"push F {text}");
             return PType.Float;
         }
         if (context.literal().STRING() != null)
         {
-          // _instructions.Add($"VisitLiteralExpr ");
+            _instructions.Add($"VisitLiteralExpr ");
             _instructions.Add($"push S {text}");
             return PType.String;
         }
         if (text == "true" || text == "false")
         {
-          //  _instructions.Add($"VisitLiteralExpr ");
+            _instructions.Add($"VisitLiteralExpr ");
             _instructions.Add($"push B {text}");
             return PType.Bool;
         }
@@ -96,7 +96,7 @@ public class CodeGenVisitor : PLCBaseVisitor<PType>
         var name = context.ID().GetText();
         if (_symbolTable.TryGetValue(name, out var type))
         {
-          //  _instructions.Add($"VisitIdExpr ");
+            _instructions.Add($"VisitIdExpr ");
             _instructions.Add($"load {name}");
             return type;
         }
@@ -114,17 +114,16 @@ public class CodeGenVisitor : PLCBaseVisitor<PType>
 
         if (leftType == PType.Float && rightType == PType.Int)
         {
-            //_instructions.Add($"VisitAssignExpr ");
+            _instructions.Add($"VisitAssignExpr ");
             _instructions.Add("itof");
         }
-        //_instructions.Add($"VisitAssignExpr ");
+        _instructions.Add($"VisitAssignExpr ");
         _instructions.Add($"save {name}");
         _instructions.Add($"load {name}");
 
-        // přidej pouze pro "top-level" výrazy – ne v rámci dalšího přiřazení
         if (context.Parent is not PLCParser.AssignExprContext)
         {
-            //_instructions.Add($"VisitAssignExpr ");            
+            _instructions.Add($"VisitAssignExpr ");            
             _instructions.Add("pop");
         }
 
@@ -143,7 +142,7 @@ public class CodeGenVisitor : PLCBaseVisitor<PType>
         {
             if (leftType == PType.String || rightType == PType.String)
             {
-              //  _instructions.Add($"VisitAddExpr ");
+                _instructions.Add($"VisitAddExpr ");
                 _instructions.Add("concat");
                 return PType.String;
             }
@@ -152,13 +151,13 @@ public class CodeGenVisitor : PLCBaseVisitor<PType>
                  (rightType == PType.Int || rightType == PType.Float))
         {
             if (leftType == PType.Float && rightType == PType.Int){
-                //_instructions.Add($"VisitAddExprFloat-INT ");
+                _instructions.Add($"VisitAddExprFloat-INT ");
                 _instructions.Add("itof");}
             if (leftType == PType.Int && rightType == PType.Float){
-                //_instructions.Add($"VisitAddExprINT-Float ");
+                _instructions.Add($"VisitAddExprINT-Float ");
                 _instructions.Insert(_instructions.Count - 1, "itof");}
                 
-          //  _instructions.Add($"VisitAddExpr ");
+            _instructions.Add($"VisitAddExpr ");
             _instructions.Add(op switch
             {
                 "+" => $"add {GetTypeCode(PromoteType(leftType, rightType))}",
@@ -185,13 +184,13 @@ public class CodeGenVisitor : PLCBaseVisitor<PType>
             (rightType == PType.Int || rightType == PType.Float))
         {
             if (leftType == PType.Float && rightType == PType.Int){
-                //_instructions.Add($"VisitMulExprFloat-INT ");
+                _instructions.Add($"VisitMulExprFloat-INT ");
                 _instructions.Add("itof");}
             if (leftType == PType.Int && rightType == PType.Float){
-                //_instructions.Add($"VisitMulExprINT-Float ");
+                _instructions.Add($"VisitMulExprINT-Float ");
                 _instructions.Insert(_instructions.Count - 1, "itof");}
 
-           // _instructions.Add($"VisitMulExpr ");
+           _instructions.Add($"VisitMulExpr ");
             _instructions.Add(op switch
             {
                 "*" => $"mul {GetTypeCode(PromoteType(leftType, rightType))}",
@@ -214,7 +213,7 @@ public class CodeGenVisitor : PLCBaseVisitor<PType>
             Visit(expr);
             exprCount++;
         }
-        //_instructions.Add($"VisitWriteStmt ");
+        _instructions.Add($"VisitWriteStmt ");
         _instructions.Add($"print {exprCount}");
         return PType.Error;
     }
@@ -226,7 +225,7 @@ public class CodeGenVisitor : PLCBaseVisitor<PType>
             var name = id.GetText();
             if (_symbolTable.TryGetValue(name, out var type))
             {
-           //     _instructions.Add($"VisitReadStmt ");
+                _instructions.Add($"VisitReadStmt ");
                 _instructions.Add($"read {GetTypeCode(type)}");
                 _instructions.Add($"save {name}");
             }
