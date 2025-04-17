@@ -27,7 +27,7 @@ namespace pjpproject
                     _symbolTable[varName] = declaredType;
                 }
             }
-            return PType.Error; // Typ deklarace není důležitý
+            return PType.Error;
         }
 
         public override PType VisitIdExpr(PLCParser.IdExprContext context)
@@ -44,8 +44,7 @@ namespace pjpproject
         public override PType VisitLiteralExpr(PLCParser.LiteralExprContext context)
         {
             var lit = context.literal();
-            //Console.WriteLine($"[DEBUG] VisitLiteralExpr: {lit.GetText()}");
-
+           
             if (lit.INT() != null) return PType.Int;
             if (lit.FLOAT() != null) return PType.Float;
             if (lit.STRING() != null) return PType.String;
@@ -153,8 +152,6 @@ namespace pjpproject
             var left = Visit(context.expression(0));
             var right = Visit(context.expression(1));
 
-            //Console.WriteLine($"[DEBUG] VisitEqExpr: left={left}, right={right}");
-
             if (left == PType.Error || right == PType.Error)
             {
                 return PType.Error;
@@ -181,9 +178,7 @@ namespace pjpproject
 
         public override PType VisitNotExpr(PLCParser.NotExprContext context)
         {
-            //Console.WriteLine($"[DEBUG] VisitNotExpr subtree: {context.GetText()}");
             var operand = Visit(context.expression());
-            //Console.WriteLine($"[DEBUG] VisitNotExpr operand type: {operand}");
 
             if (operand != PType.Bool)
             {

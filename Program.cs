@@ -20,11 +20,10 @@ namespace MyNamespace
             PLCParser parser = new PLCParser(tokens);
 
             var errorListener = new VerboseListener();
-            parser.RemoveErrorListeners();  // Smazání defaultních chybových posluchačů
-            parser.AddErrorListener(errorListener);  // Přidání vlastního listeneru
+            parser.RemoveErrorListeners();  
+            parser.AddErrorListener(errorListener); 
 
             var tree = parser.program();
-            //Console.WriteLine(tree.ToStringTree());
             var typeChecker = new TypeCheckerVisitor();
             typeChecker.Visit(tree);
 
@@ -41,6 +40,11 @@ namespace MyNamespace
             var codeGen = new CodeGenVisitor();
             codeGen.Visit(tree);
             File.WriteAllLines("output.txt", codeGen.GetInstructions());
+
+            var inter = new Interpreter();
+            inter.InterpretFile("output.txt");
+            
+            return;
                         
         }
     }

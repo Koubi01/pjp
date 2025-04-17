@@ -326,7 +326,7 @@ public class CodeGenVisitor : PLCBaseVisitor<PType>
             {
                 _instructions.Add($"jmp {endLabel}");
                 _instructions.Add($"label {elseLabel}");
-                Visit(context.statement(1)); // else-block
+                Visit(context.statement(1));
                 _instructions.Add($"label {endLabel}");
             }
             else
