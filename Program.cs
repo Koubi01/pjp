@@ -11,8 +11,7 @@ namespace MyNamespace
         static void Main(string[] args)
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-            var fileName = "C:\\Users\\Hupin\\OneDrive\\Plocha\\kubaSkola\\pjp\\input.txt";
-            //var fileName = "C:\\Users\\Hupin\\OneDrive\\Plocha\\kubaSkola\\pjp\\inputBAD.txt";
+            var fileName = "D:\\Progro\\pjpproject\\input.txt";
             Console.WriteLine("Parsing: " + fileName);
             var inputFile = new StreamReader(fileName);
             AntlrInputStream input = new AntlrInputStream(inputFile);
