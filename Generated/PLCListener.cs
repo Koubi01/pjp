@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from d:/Progro/pjpproject/PLC.g4 by ANTLR 4.13.1
+// Generated from c:/Users/Hupin/OneDrive/Plocha/kubaSkola/pjp/PLC.g4 by ANTLR 4.13.1
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -110,6 +110,26 @@ public interface IPLCListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitWhileStmt([NotNull] PLCParser.WhileStmtContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="PLCParser.fopenStmt"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFopenStmt([NotNull] PLCParser.FopenStmtContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="PLCParser.fopenStmt"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFopenStmt([NotNull] PLCParser.FopenStmtContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="PLCParser.fappendStmt"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFappendStmt([NotNull] PLCParser.FappendStmtContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="PLCParser.fappendStmt"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFappendStmt([NotNull] PLCParser.FappendStmtContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="PLCParser.block"/>.
 	/// </summary>

@@ -6,7 +6,7 @@ using Antlr4.Runtime;
 
 namespace pjpproject
 {
-    public enum PType { Int, Float, Bool, String, Error }
+    public enum PType { Int, Float, Bool, String, File ,Error }
 
     public class TypeCheckerVisitor : PLCBaseVisitor<PType>
     {

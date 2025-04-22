@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from d:/Progro/pjpproject/PLC.g4 by ANTLR 4.13.1
+// Generated from c:/Users/Hupin/OneDrive/Plocha/kubaSkola/pjp/PLC.g4 by ANTLR 4.13.1
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -131,6 +131,30 @@ public partial class PLCBaseListener : IPLCListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitWhileStmt([NotNull] PLCParser.WhileStmtContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="PLCParser.fopenStmt"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterFopenStmt([NotNull] PLCParser.FopenStmtContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="PLCParser.fopenStmt"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitFopenStmt([NotNull] PLCParser.FopenStmtContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="PLCParser.fappendStmt"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterFappendStmt([NotNull] PLCParser.FappendStmtContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="PLCParser.fappendStmt"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitFappendStmt([NotNull] PLCParser.FappendStmtContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="PLCParser.block"/>.
 	/// <para>The default implementation does nothing.</para>

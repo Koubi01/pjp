@@ -7,6 +7,9 @@ public class Interpreter{
         private Stack<object> stack = new();
         private Dictionary<string, object> variables = new();
         private Dictionary<int, int> labels = new();
+        private Dictionary<string, StreamWriter> openFiles = new();
+
+
         private string[]? lines;
         private void ReadFile(string fileName){
             lines = File.ReadAllLines(fileName);
@@ -138,7 +141,25 @@ public class Interpreter{
                     case "save":
                         variables[parts[1]] = stack.Pop();
                         break;
+                    case "fopen":
+                        {
+                            string file = stack.Pop().ToString()!;
+                            var writer = new StreamWriter(file, append: true);
+                            stack.Push(writer);
+                            break;
+                        }
+                    case "fappend":
+                        {
+                            int k = int.Parse(parts[1]);
+                            var values = new List<string>();
+                            for (int i = 0; i < k; i++)
+                                values.Insert(0, stack.Pop().ToString());
 
+                            var file = (StreamWriter)stack.Pop();
+                            file.WriteLine(string.Join("", values));
+                            file.Flush();
+                            break;
+                        }
                     case "print":
                         int n = int.Parse(parts[1]);
                         var items = new List<object>();

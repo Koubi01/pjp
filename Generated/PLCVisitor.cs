@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from d:/Progro/pjpproject/PLC.g4 by ANTLR 4.13.1
+// Generated from c:/Users/Hupin/OneDrive/Plocha/kubaSkola/pjp/PLC.g4 by ANTLR 4.13.1
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -79,6 +79,18 @@ public interface IPLCVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitWhileStmt([NotNull] PLCParser.WhileStmtContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="PLCParser.fopenStmt"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitFopenStmt([NotNull] PLCParser.FopenStmtContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="PLCParser.fappendStmt"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitFappendStmt([NotNull] PLCParser.FappendStmtContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="PLCParser.block"/>.
 	/// </summary>

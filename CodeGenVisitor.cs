@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Antlr4.Runtime;
+using Antlr4.Runtime.Misc;
 using pjpproject;
 
 public class CodeGenVisitor : PLCBaseVisitor<PType>
@@ -16,6 +17,7 @@ public class CodeGenVisitor : PLCBaseVisitor<PType>
         PType.Float => "F",
         PType.Bool => "B",
         PType.String => "S",
+        PType.File => "File",
         _ => "?"
     };
 
@@ -36,6 +38,7 @@ public class CodeGenVisitor : PLCBaseVisitor<PType>
             "float" => PType.Float,
             "bool" => PType.Bool,
             "string" => PType.String,
+            "file" => PType.File,
             _ => PType.Error,
         };
 
@@ -355,4 +358,32 @@ public class CodeGenVisitor : PLCBaseVisitor<PType>
 
             return PType.Error;
         }
+
+    public override PType VisitFopenStmt(PLCParser.FopenStmtContext context)
+    {
+        string varName = context.ID().GetText();
+
+        Visit(context.expression());
+
+        _instructions.Add("fopen");
+        _instructions.Add($"save {varName}");
+        return PType.Error;
+    }
+
+
+    public override PType VisitFappendStmt(PLCParser.FappendStmtContext context)
+    {
+        int fappendCounter = 0;
+        
+        string varName = context.ID().GetText();
+        _instructions.Add($"load {varName}");
+        foreach (var expres in context.expression()){
+            Visit(expres);
+            fappendCounter++;
+        }
+
+        _instructions.Add($"fappend {fappendCounter}");
+
+        return PType.Error;
+    }
 }

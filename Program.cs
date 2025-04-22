@@ -11,7 +11,7 @@ namespace MyNamespace
         static void Main(string[] args)
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-            var fileName = "D:\\Progro\\pjpproject\\input.txt";
+            var fileName = "C:\\Users\\Hupin\\OneDrive\\Plocha\\kubaSkola\\pjp\\input.txt";
             Console.WriteLine("Parsing: " + fileName);
             var inputFile = new StreamReader(fileName);
             AntlrInputStream input = new AntlrInputStream(inputFile);
@@ -19,13 +19,13 @@ namespace MyNamespace
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             PLCParser parser = new PLCParser(tokens);
 
-            var errorListener = new VerboseListener();
+           // var errorListener = new VerboseListener();
             parser.RemoveErrorListeners();  
-            parser.AddErrorListener(errorListener); 
+           // parser.AddErrorListener(errorListener); 
 
             var tree = parser.program();
-            var typeChecker = new TypeCheckerVisitor();
-            typeChecker.Visit(tree);
+           // var typeChecker = new TypeCheckerVisitor();
+            //typeChecker.Visit(tree);
 
 
             if (Errors.NumberOfErrors > 0)

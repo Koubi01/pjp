@@ -1,24 +1,9 @@
-if (3<4) write "condition was true";
-else write "condition was false";
-
-if (true) {
-	write "inside";
-	write "second";
-	write "if";
-}
-
-int a,b;
-
-while(a<10) {
- write "a=",a;
- a=a+1;
-}
-
-a=0;
-
-read b;
-
-while(a<b) {
- write "a=",a,", b=",b;
- a=a+1;
-}
+FILE a;
+FILE b;
+fopen a, "test.txt";
+fappend a, 1,"A",2;
+fopen b, "test2.txt";
+fappend b, 5555;
+fappend b,"dasdadaD", 1.1, true;
+fappend a, "konec"; 
+fappend b, 1+1, "\n","a" . "B", false;

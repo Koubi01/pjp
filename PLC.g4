@@ -9,18 +9,24 @@ statement
     | writeStmt
     | ifStmt
     | whileStmt
+    | fopenStmt
+    | fappendStmt
     | block
     | ';'
     ;
 
 variableDecl: type ID (',' ID)* ';';
-type: 'int' | 'float' | 'bool' | 'string';
+type: 'int' | 'float' | 'bool' | 'string' | 'file';
 
 readStmt: 'read' ID (',' ID)* ';';
 writeStmt: 'write' expression (',' expression)* ';';
 
 ifStmt: 'if' '(' expression ')' statement ('else' statement)?;
 whileStmt: 'while' '(' expression ')' statement;
+
+fopenStmt: 'fopen' ID ',' expression ';';
+fappendStmt: 'fappend' ID (',' expression)+ ';';
+
 block: '{' statement* '}';
 
 expression
@@ -43,6 +49,7 @@ literal
     : INT 
     | FLOAT 
     | STRING 
+    | FILE
     | 'true' 
     | 'false'
     ;
@@ -50,6 +57,7 @@ literal
 ID: [a-zA-Z][a-zA-Z0-9]*;
 FLOAT: [0-9]+ '.' [0-9]+;
 INT: [0-9]+;
+FILE: '"' [a-zA-Z][a-zA-Z0-9]* '.' [a-zA-Z] '"';
 STRING: '"' .*? '"';
 COMMENT: '//' ~[\r\n]* -> skip;
 WS: [ \t\r\n]+ -> skip;
